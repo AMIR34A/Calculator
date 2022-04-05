@@ -57,22 +57,21 @@ namespace Calculator
 
                 switch (char.Parse(input))
                 {
-                    case '+':
+                     case '+':
                         calculate = (firstNumber, secondNumber) => firstNumber + secondNumber;
-                        goto done;
+                        break;
 
                     case '-':
                         calculate = (firstNumber, secondNumber) => firstNumber - secondNumber;
-                        goto done;
+                        break;
 
                     case '*':
                         calculate = (firstNumber, secondNumber) => firstNumber * secondNumber;
-
-                        goto done;
+                        break;
 
                     case '÷':
                         calculate = (firstNumber, secondNumber) => firstNumber / secondNumber;
-                        goto done;
+                        break;
 
                     case '.':
                         if (!ShowNumberTextBox.Text.Contains('.'))
@@ -86,11 +85,11 @@ namespace Calculator
                             double result = calculate(firstNum, secondNum);
                             ShowNumberTextBox.Text = result.ToString();
                             isFirstNumValidate = false;
-                            firstNum = secondNum = 0.0;
+                            firstNum = result;
+                            secondNum = 0.0;
                         }
                         return;
                 }
-            done:
                 ShowNumberTextBox.Text = "";
             }
             else
