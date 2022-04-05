@@ -40,8 +40,8 @@ namespace Calculator
                     else
                     {
                         NumberPadDataGridView.Rows[i].Cells[j].Tag = "Sign";
+                        NumberPadDataGridView.Rows[i].Cells[j].Value = signs[signCounter++];
                         NumberPadDataGridView.Rows[i].Cells[j].Style.BackColor = Color.LightBlue;
-                        NumberPadDataGridView.Rows[i].Cells[j].Value = signs.Skip(signCounter++).First();
                     }
                 }
             }
