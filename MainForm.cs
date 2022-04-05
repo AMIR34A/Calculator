@@ -2,10 +2,10 @@ namespace Calculator
 {
     public partial class MainForm : Form
     {
-        private double firstNum = 0.0;
-        private double secondNum = 0.0;
-        bool isFistNumValidate = false;
-        private delegate double Calculate(double firstNumber, double secondNumber);
+        double firstNum = 0.0;
+        double secondNum = 0.0;
+        bool isFirstNumValidate = false;
+        delegate double Calculate(double firstNumber, double secondNumber);
         Calculate calculate;
 
         public MainForm()
@@ -27,7 +27,7 @@ namespace Calculator
 
         private void FillNumberPad()
         {
-            var signs = new[] { '.', '=', '+', '-', '*', '÷' };
+            var signs = new[] { '.', '=', '+', '-', '*', 'Ã·' };
             int number = 9;
             int signCounter = 0;
             for (int i = 0; i < 4; i++)
@@ -52,8 +52,8 @@ namespace Calculator
         {
             if (tag == "Sign")
             {
-                if (!isFistNumValidate)
-                    isFistNumValidate = double.TryParse(ShowNumberTextBox.Text, out firstNum);
+                if (!isFirstNumValidate)
+                    isFirstNumValidate = double.TryParse(ShowNumberTextBox.Text, out firstNum);
 
                 switch (char.Parse(input))
                 {
@@ -70,7 +70,7 @@ namespace Calculator
 
                         goto done;
 
-                    case '÷':
+                    case 'Ã·':
                         calculate = (firstNumber, secondNumber) => firstNumber / secondNumber;
                         goto done;
 
@@ -85,7 +85,8 @@ namespace Calculator
                         {
                             double result = calculate(firstNum, secondNum);
                             ShowNumberTextBox.Text = result.ToString();
-                            isFistNumValidate = false;
+                            isFirstNumValidate = false;
+                            firstNum = secondNum = 0.0;
                         }
                         return;
                 }
